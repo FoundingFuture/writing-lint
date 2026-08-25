@@ -2,8 +2,8 @@
 
 ## v1.0.0, 2026-08-26
 
-First release. The checkers moved out of two Claude skill archives into a
-package the build pipeline installs by tag.
+First release. The checkers moved out of two editor skill archives into
+a package the build pipeline installs by tag.
 
 - `check-web-content` and `check-docs` are entry points of one package.
 - Every banned word, phrase, construct and context term moved into

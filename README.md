@@ -4,9 +4,9 @@ Two checkers over one rule file. `check-web-content` reads pages a browser
 renders. `check-docs` reads comments, docstrings and markdown. Both report
 the same way and both read `writing_lint/rules.toml`.
 
-The checkers began as scripts inside two Claude skill archives. A build
-pipeline cannot depend on a Claude account, so they moved here. The skills
-now call the installed commands.
+The checkers began as scripts bundled inside two editor skill archives.
+A build pipeline cannot depend on an editor account, so they moved here.
+Those archives now call the installed commands.
 
 ## Install
 
