@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.1, 2026-08-26
+
+- A GitHub alert opened a blockquote with a bracketed keyword, and the
+  keyword was read as an exclamation mark in prose. It is markup, so it
+  is stripped before the character rules run.
+
 ## v1.0.0, 2026-08-26
 
 First release. The checkers moved out of two editor skill archives into

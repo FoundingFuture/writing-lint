@@ -206,8 +206,14 @@ def parse_markdown(lines):
     return blocks, bold_runs
 
 
+# A GitHub alert opens a blockquote with a bracketed keyword. That
+# keyword is markup Goldmark reads, not punctuation a reader sees.
+ALERT = re.compile(r"\[!(?:NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]", re.IGNORECASE)
+
+
 def strip_code(text):
     """Remove markup that is not prose: images, link targets, shortcodes, code."""
+    text = ALERT.sub(" ", text)
     text = re.sub(r"!\[[^\]]*\]\([^)]*\)", " ", text)          # ![alt](src "title")
     text = re.sub(r"!\[[^\]]*\]\[[^\]]*\]", " ", text)          # ![alt][ref]
     text = re.sub(r"\[([^\]]*)\]\((?:[^()]|\([^)]*\))*\)", r"\1", text)  # [text](url) keeps text
