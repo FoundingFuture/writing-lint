@@ -1,0 +1,4 @@
+# What the theme under test defines. check-web-content reads this so a
+# page using the theme's own names is correct rather than a warning.
+shortcodes = ["sources", "kind", "facet"]
+front_matter = ["customField"]

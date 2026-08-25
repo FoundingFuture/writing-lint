@@ -1,0 +1,512 @@
+# Every banned word, phrase, construct and context term the checkers read.
+# [shared] is what both checkers agree on. [web_content] and [docs] add to it.
+# A rule change is a data change here, plus a test.
+
+[shared]
+words = [
+  "additionally", "arena", "augment", "augments", "backbone", "battle-tested", "beacon",
+  "bedrock", "best-in-class", "bolster", "bolsters", "comprehensive", "consequently",
+  "considerably", "cornerstone", "countless", "crucial", "cutting-edge", "deep-dive",
+  "delightful", "delve", "delves", "dramatically", "drastically", "effortless",
+  "effortlessly", "elegant", "elevate", "elevates", "embark", "empower", "empowers",
+  "enterprise-grade", "essential", "exponentially", "extensible", "extremely", "facilitate",
+  "facilitates", "first-class", "foster", "fosters", "frontier", "furthermore",
+  "game-changer", "game-changing", "gracefully", "greatly", "harness", "harnesses", "hence",
+  "holistic", "immensely", "imperative", "incredibly", "indispensable", "industry-leading",
+  "integral", "intricate", "intuitive", "landscape", "leverage", "leverages", "leveraging",
+  "lifeblood", "lightning-fast", "merely", "meticulous", "meticulously", "moreover",
+  "multifaceted", "myriad", "next-level", "nuanced", "numerous", "painstaking", "paradigm",
+  "paramount", "performant", "pivotal", "plethora", "powerful", "production-ready", "realm",
+  "remarkably", "robust", "scalable", "seamless", "seamlessly", "showcase", "showcases",
+  "significantly", "sleek", "spotlight", "state-of-the-art", "straightforward",
+  "streamline", "streamlines", "substantially", "supercharge", "tapestry", "testament",
+  "thus", "top-notch", "trivially", "turnkey", "ultimately", "underscore", "underscores",
+  "unleash", "unleashes", "utilize", "utilizes", "utilizing", "vastly", "vital",
+  "world-class",
+]
+
+phrases = [
+  "a number of", "a variety of", "a wide range of", "acts as", "aims to",
+  "all you need to do", "allowing you to", "allows you to", "and so on",
+  "as mentioned above", "as mentioned earlier", "as previously discussed",
+  "as stated earlier", "as we can see", "as you can see", "at its core",
+  "at the end of the day", "bear in mind", "behind the scenes", "blazing fast",
+  "blazingly fast", "could possibly", "deep dive", "dive deep", "do not hesitate to",
+  "don't hesitate to", "feel free to", "for your convenience", "gives you the ability to",
+  "happy coding", "having said that", "heavy lifting", "here are the", "here is the",
+  "here's how", "hope this helps", "in closing", "in conclusion", "in essence",
+  "in order to", "in other words", "in summary", "in the world of", "in today's",
+  "is designed to", "is responsible for", "it is important to note",
+  "it is important to remember", "it is worth noting", "it should be noted", "keep in mind",
+  "let's dive", "let's look at", "let's take a look", "makes it easy to", "may potentially",
+  "might be able to", "not only", "note that", "please note", "provides a way to",
+  "put simply", "quick and easy", "remember that", "rest assured", "secret sauce",
+  "seeks to", "serves as", "silver bullet", "that being said", "the beauty of",
+  "the magic of", "the user should", "think of it as", "this ensures that",
+  "this means that", "to summarize", "to wrap up", "under the hood", "wealth of",
+  "when it comes to", "whether you are", "whether you're", "wide array", "with that said",
+  "worth mentioning", "worth noting", "you will want to", "you'll want to",
+]
+
+context = [
+  "clean", "correctly", "critical", "easily", "ecosystem", "employ", "enable", "enables",
+  "ensure", "ensures", "ensuring", "essentially", "flexible", "granular", "highly",
+  "journey", "just", "navigate", "optimize", "optimizes", "properly", "quite", "several",
+  "simple", "very",
+]
+
+
+[shared.limits]
+max_sentence_words = 20
+max_heading_depth = 3
+
+
+[shared.key_adjective]
+# In code, 'key' names a map entry far more often than it modifies a
+# noun. Only the adjective sense is matched.
+nouns = [
+  "advantage", "aspect", "benefit", "component", "concept", "consideration", "detail",
+  "difference", "factor", "feature", "idea", "insight", "part", "piece", "point", "step",
+  "takeaway", "thing",
+]
+
+
+[shared.chars]
+# Characters that never appear in either kind of writing.
+"—" = { name = "em dash", fix = "a period and a new sentence, or a comma" }
+"–" = { name = "en dash", fix = "a period, or 'to' in a range" }
+"…" = { name = "ellipsis", fix = "finish the sentence" }
+"‘" = { name = "curly quote", fix = "straight '" }
+"’" = { name = "curly apostrophe", fix = "straight '" }
+"“" = { name = "curly quote", fix = "straight \"" }
+"”" = { name = "curly quote", fix = "straight \"" }
+" " = { name = "non-breaking space", fix = "a regular space" }
+"→" = { name = "arrow glyph", fix = "a word" }
+"←" = { name = "arrow glyph", fix = "a word" }
+"✓" = { name = "check glyph", fix = "a word" }
+"✗" = { name = "cross glyph", fix = "a word" }
+"•" = { name = "bullet glyph", fix = "a list item" }
+"★" = { name = "star glyph", fix = "a word" }
+"⚠" = { name = "warning glyph", fix = "the word Warning" }
+
+
+[web_content]
+words = [
+  "absolutely", "amplify", "arguably", "bespoke", "boasts", "breathtaking", "cacophony",
+  "catalyst", "catalyze", "compelling", "conversely", "crucially", "delving", "elucidate",
+  "enduring", "ever-evolving", "exceptional", "footgun", "footguns", "fostering",
+  "foundational", "galvanize", "garner", "garnered", "genuinely", "groundbreaking",
+  "importantly", "indelible", "innovative", "invaluable", "kaleidoscope", "labyrinth",
+  "load-bearing", "loadbearing", "mosaic", "must-visit", "nestled", "non-trivial",
+  "nontrivial", "notably", "odyssey", "orthogonal", "profound", "remarkable", "renowned",
+  "revolutionary", "revolutionize", "showcasing", "spearhead", "stunning", "symphony",
+  "synergy", "synthesize", "thereby", "throughline", "transformative", "truly",
+  "underscoring", "undoubtedly", "unpack", "unprecedented", "unravel", "unveil", "unveils",
+  "unwavering", "versatile", "vibrant", "watershed",
+]
+
+phrases = [
+  "a lot of the value", "a new era", "a tempting approach", "at scale",
+  "because it matters", "brings me back to", "cannot be overstated", "click here",
+  "dive into", "does the work", "doing a lot of work", "doing the work",
+  "don't get me wrong", "double-click on", "earns its keep", "ever wondered",
+  "experts agree", "experts believe", "experts say", "find out more", "full stop",
+  "game changer", "great question", "hand-waving", "here is the thing", "here's the deal",
+  "here's the kicker", "here's the thing", "hit a nerve", "hits hardest", "honest take",
+  "honestly", "i want to be careful", "i want to be precise", "imagine a world",
+  "in a trenchcoat", "in contrast", "in this article", "in this post", "in this section",
+  "industry reports", "instead of being", "is not about", "isn't about", "it is believed",
+  "it would be wrong to", "keep coming back to", "kept coming up", "key insight",
+  "lean into", "learn more", "less about", "let's be honest", "let's break this down",
+  "let's explore", "many developers", "most developers", "most frameworks",
+  "most libraries", "most people", "most sites", "most themes", "most tools", "no filler",
+  "no fluff", "no guessing", "no surprises", "north star", "not just", "not merely",
+  "not simply", "observers have", "on the other hand", "one might be tempted",
+  "paradigm shift", "pave the way", "picture this", "put differently", "reach for",
+  "reaching for", "read more", "read on", "real talk", "research shows", "seen this movie",
+  "sharp edges", "shed light on", "signal versus noise", "signal vs noise", "sit with",
+  "sitting with", "some critics", "some might say", "stands as", "strikes hardest",
+  "stuck with me", "studies show", "surface area", "surprised me most", "that said",
+  "that's the tell", "the best thing you can do", "the deeper issue", "the fact that",
+  "the future of", "the heart of the matter", "the honest answer", "the honest version",
+  "the interesting part", "the least interesting", "the only thing that changed",
+  "the point is", "the quiet part", "the real question", "the right question",
+  "the rise of", "the short version", "the takeaway", "the tell", "the thing is",
+  "the thing that got me", "the traditional way", "the trap is", "the upshot",
+  "the useful thing", "the whole game", "this is not about", "this is not to say",
+  "this matters", "to be clear", "to be fair", "to be honest", "to put it another way",
+  "traditional approaches", "unlike most", "unlike other", "what really matters",
+  "what this means for", "what you need to know", "where I landed",
+  "where it gets interesting", "where most", "where other", "which is to say", "while most",
+  "widely known", "with appropriate caveats", "without further ado", "worth a look",
+  "worth asking", "worth pointing out", "worth sitting", "worth stating",
+  "you're absolutely right", "zoom out",
+]
+
+context = [
+  "actually", "basically", "carries", "carry", "compounds", "constellation", "dial",
+  "engine", "first-order", "fundamentally", "holds", "honest", "instead", "knob", "land",
+  "lands", "lever", "lives", "mature", "oracle", "physics", "primitive", "primitives",
+  "quietly", "rather", "real", "really", "seam", "seams", "sits", "surface", "surfaces",
+  "unlock",
+]
+
+# A term is bounded by word characters and hyphens, so 'key' does not
+# match inside "load-bearing".
+boundary = "hyphen"
+
+[web_content.limits]
+max_sentence_words = 20
+max_heading_words = 8
+max_heading_depth = 3
+title_case_min = 3
+max_title_chars = 60
+min_description_chars = 50
+max_description_chars = 160
+max_paren_words = 5
+
+[web_content.key_adjective]
+nouns = [
+  "driver", "moment", "role",
+]
+
+
+[web_content.headings]
+filler = [
+  "introduction",
+  "overview",
+  "conclusion",
+  "conclusions",
+  "summary",
+  "final thoughts",
+  "wrapping up",
+  "closing thoughts",
+  "key takeaways",
+  "takeaways",
+  "challenges",
+  "looking ahead",
+  "the future",
+  "next steps",
+  "why it matters",
+  "what this means",
+  "tl;dr",
+  "tldr",
+  "background",
+]
+# A heading carrying one of these reads as a sentence, not a label.
+verbs = [
+  "is",
+  "are",
+  "was",
+  "were",
+  "isn't",
+  "aren't",
+  "assume",
+  "assumes",
+  "does",
+  "doesn't",
+  "do",
+  "don't",
+  "can",
+  "cannot",
+  "can't",
+  "should",
+  "shouldn't",
+  "will",
+  "won't",
+  "need",
+  "needs",
+  "make",
+  "makes",
+  "take",
+  "takes",
+  "get",
+  "gets",
+  "goes",
+  "went",
+  "come",
+  "comes",
+  "means",
+  "matter",
+  "matters",
+  "work",
+  "works",
+  "fail",
+  "fails",
+  "win",
+  "wins",
+  "beat",
+  "beats",
+  "change",
+  "changes",
+  "turn",
+  "turns",
+  "keep",
+  "keeps",
+  "tell",
+  "tells",
+  "show",
+  "shows",
+  "has",
+  "have",
+  "had",
+  "you",
+  "your",
+  "we",
+  "our",
+  "i",
+  "my",
+  "it",
+]
+wh_openers = [
+  "how", "what", "when", "where", "whether", "who", "why",
+]
+
+
+[web_content.hugo]
+builtin_shortcodes = [
+  "details", "figure", "highlight", "instagram", "param", "qr", "ref", "relref", "vimeo",
+  "x", "youtube",
+]
+
+front_matter_required = [
+  "date", "description", "title",
+]
+
+# Hugo's own front matter keys. A page key outside this list belongs under
+# params, unless a contract file names it.
+front_matter_known = [
+  "aliases", "audio", "build", "cascade", "categories", "date", "description",
+  "draft", "expiryDate", "headless", "images", "isCJKLanguage", "keywords",
+  "kind", "lastmod", "layout", "linkTitle", "markup", "menu", "menus",
+  "outputs", "params", "publishDate", "resources", "sitemap", "slug", "summary",
+  "tags", "title", "translationKey", "type", "url", "videos", "weight",
+  "authors", "series",
+]
+
+
+[[web_content.constructs]]
+rule = "contrast"
+level = "error"
+ignorecase = true
+method = "search"
+message = "contrast frame (not X, it is Y). State Y."
+pattern = '''\b(is|are|was|were|it's|isn't|aren't|wasn't|weren't|not)\s+not\s+(a|an|the|about|just|only|merely|simply)?\s*\w[\w\s-]{0,40}?[,.;]\s*(it|this|that|they)\s+(is|are|was|were|'s)\b'''
+
+[[web_content.constructs]]
+rule = "contrast"
+level = "error"
+ignorecase = true
+method = "search"
+message = "contrast frame (not a X, a Y). State Y."
+pattern = '''\bnot\s+(a|an|the)\s+[\w-]+(\s+[\w-]+)?\s*[,.]\s*(but|a|an|the)\s+'''
+
+[[web_content.constructs]]
+rule = "contrast"
+level = "error"
+ignorecase = true
+method = "search"
+message = "negated opener (this is not about X). State what it is about."
+pattern = '''\b(this|that|it)\s+(is|was|isn't|wasn't)\s+(not\s+)?(about|a matter of)\b'''
+
+[[web_content.constructs]]
+rule = "comparison"
+level = "error"
+ignorecase = true
+method = "search"
+message = "comparison frame (most X do A). Say what this one does."
+pattern = '''\b(most|many|other|typical|traditional|conventional|ordinary|standard)\s+\w+(\s+\w+)?\s+(assume|assumes|do|does|treat|treats|expect|expects|use|uses|rely|relies|start|starts|make|makes|require|requires|ship|ships|guess|guesses|hide|hides)\b'''
+
+[[web_content.constructs]]
+rule = "comparison"
+level = "error"
+ignorecase = true
+method = "search"
+message = "comparison frame (this one does B). Name the thing and state the fact."
+pattern = '''\b(this one|this theme|this tool|this site|this page|this script|this plugin|this library|ours)\s+(assumes|does|treats|expects|uses|relies|starts|makes|requires|ships|measures|doesn't|does not)\b'''
+
+[[web_content.constructs]]
+rule = "comparison"
+level = "error"
+ignorecase = true
+method = "search"
+message = "foil setup (where others X). Delete the foil."
+pattern = '''^\s*(where|while|whereas|unlike)\s+(other|most|many|typical|traditional)\b'''
+
+[[web_content.constructs]]
+rule = "instead"
+level = "error"
+ignorecase = true
+method = "search"
+message = "instead frame. State what happened."
+pattern = '''\binstead of being\b|\brather than being\b|\bwent away instead\b'''
+
+[[web_content.constructs]]
+rule = "triplet"
+level = "error"
+ignorecase = true
+method = "search"
+message = "rule of three closing a sentence. Keep one measured fact."
+pattern = '''\b[\w-]+,\s+[\w-]+,?\s+(and|or)\s+[\w-]+[.!?]'''
+
+[[web_content.constructs]]
+rule = "question-reveal"
+level = "error"
+ignorecase = false
+method = "search"
+message = "question and reveal (The result? X). State X."
+pattern = '''\b(the|a|its|their)\s+\w+(\s+\w+)?\?\s+[A-Z]'''
+
+[[web_content.constructs]]
+rule = "colon-reveal"
+level = "error"
+ignorecase = false
+method = "search"
+message = "colon reveal (short clause: payload). Write one sentence."
+pattern = '''(^|[.!?]\s+)([A-Z]\w*(\s+\w+){0,5}):\s+[a-z][^,:.!?]{0,40}[.!?](\s|$)'''
+
+[[web_content.constructs]]
+rule = "litotes"
+level = "error"
+ignorecase = true
+method = "search"
+message = "litotes (not a small X). Say what it is."
+pattern = '''\b(not|no)\s+(a\s+)?(small|minor|trivial|difficult|hard|uncommon|unusual|accident|coincidence)\b'''
+
+[[web_content.constructs]]
+rule = "participial-tail"
+level = "error"
+ignorecase = true
+method = "search"
+message = "participial tail. New sentence, or delete."
+pattern = ''',\s+(ensuring|highlighting|underscoring|emphasizing|reflecting|symbolizing|showcasing|fostering|contributing|cultivating|encompassing|marking|setting the stage|paving the way)\b'''
+
+[[web_content.constructs]]
+rule = "announced-count"
+level = "error"
+ignorecase = true
+method = "search"
+message = "announced count. Use headings, not a promise."
+pattern = '''\b(two|three|four|five|3|4|5)\s+(things|reasons|lessons|caveats|points|ways|takeaways|problems|questions)\b'''
+
+[[web_content.constructs]]
+rule = "invented-label"
+level = "error"
+ignorecase = true
+method = "search"
+message = "invented label (the X paradox). Describe the behavior."
+pattern = '''\bthe\s+\w+\s+(paradox|trap|problem|gap|tax|creep|effect)\b'''
+
+[[web_content.constructs]]
+rule = "aphorism"
+level = "error"
+ignorecase = false
+method = "search"
+message = "aphorism (X is the Y of Z). Delete."
+pattern = '''\b[A-Z]\w+\s+is\s+the\s+\w+\s+of\s+\w+\.'''
+
+[[web_content.constructs]]
+rule = "suspense"
+level = "error"
+ignorecase = true
+method = "search"
+message = "suspense hook. Give the name."
+pattern = '''\bhas\s+a\s+name\.|\bthere\s+is\s+a\s+(word|name|term)\s+for\s+(this|that)\b'''
+
+[[web_content.constructs]]
+rule = "worth-gerund"
+level = "error"
+ignorecase = true
+method = "search"
+message = "worth + gerund. Delete the marker and keep the fact."
+pattern = '''\bworth\s+\w+ing\b'''
+
+[[web_content.constructs]]
+rule = "narration"
+level = "error"
+ignorecase = true
+method = "search"
+message = "process narration. State the finding, not the story."
+pattern = '''\b(for about a (day|week|month|year)|at first|initially|then i\b|so i\b|i (read|set|tried|found|wrote|decided|noticed|realized|realised|started|spent|ended up|went|switched|picked|chose|wanted|thought))\b'''
+
+[[web_content.constructs]]
+rule = "reader"
+level = "warning"
+ignorecase = true
+method = "search"
+message = "reader address or inclusive we. Third person."
+pattern = '''\b(you|your|you're|you'll|yourself|we|we're|we'll|our|ours|let's)\b'''
+
+[[web_content.constructs]]
+rule = "contraction"
+level = "warning"
+ignorecase = true
+method = "search"
+message = "contraction. Use the full form."
+pattern = '''\b\w+n't\b|\b(it|that|there|he|she|what|who)'s\b|\b\w+'(ll|re|ve|d)\b'''
+
+[[web_content.constructs]]
+rule = "unsupported-step"
+level = "error"
+ignorecase = true
+method = "search"
+message = "unsupported step. Write the step, or the number."
+pattern = '''\b(it follows that|it is easy to see|clearly|obviously|evidently|trivially|of course|needless to say)\b'''
+
+[[web_content.constructs]]
+rule = "false-range"
+level = "error"
+ignorecase = true
+method = "search"
+message = "stacked false range (from X to Y, from A to B). List the items."
+pattern = '''\bfrom\s+(the\s+)?\w+(\s+\w+)?\s+to\s+(the\s+)?\w+(\s+\w+)?,\s+from\b'''
+
+
+[docs]
+words = [
+  "basically", "fundamentally", "seamlessness", "simply",
+]
+
+phrases = [
+  "out of the box", "this class", "this file", "this function", "this method",
+  "this module", "this script",
+]
+
+context = [
+  "notably",
+]
+
+# The docs checker reads identifiers constantly. A term is bounded by
+# word characters only, so it may sit next to a hyphen.
+boundary = "word"
+
+[docs.limits]
+max_sentence_words = 20
+max_heading_depth = 3
+title_case_min = 3
+
+[docs.headings]
+filler = [
+  "introduction",
+  "overview",
+  "conclusion",
+  "summary",
+  "final thoughts",
+  "wrapping up",
+  "closing thoughts",
+]
+
+[docs.caps]
+# A run of shouted words is emphasis. These tags are not.
+allow = [
+  "BUG", "FIXME", "HACK", "NOTE", "SAFETY", "TODO", "WARNING", "XXX",
+]
+
+
+[[docs.constructs]]
+rule = "opener"
+level = "error"
+ignorecase = true
+method = "match"
+message = "subject-restating opener. Start with the verb."
+pattern = '''^\s*(this\s+(function|method|class|module|script|file|helper|utility)\b|the\s+purpose\s+of\s+this\b|a\s+(function|method|class)\s+(that|which)\b)'''

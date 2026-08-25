@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "writing-lint"
+version = "1.0.0"
+description = "Checkers for web page content and for code comments and docs."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+authors = [{ name = "Eddie Niese" }]
+keywords = ["lint", "writing", "documentation", "hugo"]
+dependencies = ["tomli>=1.1.0; python_version < '3.11'"]
+
+[project.scripts]
+check-web-content = "writing_lint.web_content:main"
+check-docs = "writing_lint.docs:main"
+
+[project.urls]
+Source = "https://github.com/FoundingFuture/writing-lint"
+
+[tool.hatch.build.targets.wheel]
+packages = ["writing_lint"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
