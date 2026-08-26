@@ -53,9 +53,12 @@ def _merge(shared, overlay):
 
 
 def _dedupe(seq):
+    """Drop repeats, keeping first order. A table row is kept as it is."""
     seen, out = set(), []
     for item in seq:
-        if item not in seen:
+        if isinstance(item, dict):
+            out.append(item)
+        elif item not in seen:
             seen.add(item)
             out.append(item)
     return out

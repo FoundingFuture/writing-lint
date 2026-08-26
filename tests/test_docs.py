@@ -32,10 +32,10 @@ def test_commented_source_finds_dead_code_not_prose():
 
 def test_bad_docs_markdown():
     findings = run(docs, "bad-docs.md")
-    assert levels(findings) == (21, 2)
+    assert levels(findings) == (22, 2)
     assert tally(findings) == {
-        "char": 2, "context": 2, "fence": 1, "heading": 3, "length": 1,
-        "opener": 1, "phrase": 6, "word": 7,
+        "char": 2, "context": 2, "elliptical-negation": 1, "fence": 1,
+        "heading": 3, "length": 1, "opener": 1, "phrase": 6, "word": 7,
     }
 
 

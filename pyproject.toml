@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "writing-lint"
-version = "1.0.1"
+version = "1.0.2"
 description = "Checkers for web page content and for code comments and docs."
 readme = "README.md"
 license = { file = "LICENSE" }

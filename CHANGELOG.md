@@ -1,10 +1,18 @@
 # Changelog
 
+## v1.0.2, 2026-08-26
+
+- A sentence that ends on a bare auxiliary and a negation is a finding in
+  both checkers. Such a sentence borrows its verb from the sentence before
+  it and reads as a reveal.
+- Rules under [shared.constructs] now reach both checkers. The merge
+  dropped table rows before, so no shared construct had ever applied.
+
 ## v1.0.1, 2026-08-26
 
-- A GitHub alert opened a blockquote with a bracketed keyword, and the
-  keyword was read as an exclamation mark in prose. It is markup, so it
-  is stripped before the character rules run.
+- A GitHub alert opens a blockquote with a bracketed keyword. The keyword
+  was read as an exclamation mark in prose. It is markup, so it is
+  stripped before the character rules run.
 
 ## v1.0.0, 2026-08-26
 

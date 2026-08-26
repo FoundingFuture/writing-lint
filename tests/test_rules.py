@@ -42,7 +42,7 @@ def test_no_term_is_listed_twice():
 
 
 def test_boundaries_differ():
-    """The web checker treats a hyphen as a boundary. The docs checker does not."""
+    """The web checker treats a hyphen as a boundary. The docs checker treats it as a word character."""
     assert web_content.BOUNDARY == "hyphen"
     assert docs.BOUNDARY == "word"
 
@@ -52,5 +52,5 @@ def test_counts_match_the_rule_file():
     assert len(docs.PHRASE_RE) == 96
     assert len(web_content.CONTEXT_RE) == 58
     assert len(docs.CONTEXT_RE) == 26
-    assert len(web_content.CONSTRUCTS) == 22
-    assert len(docs.CONSTRUCTS) == 1
+    assert len(web_content.CONSTRUCTS) == 23
+    assert len(docs.CONSTRUCTS) == 2

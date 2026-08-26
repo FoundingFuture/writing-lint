@@ -20,3 +20,5 @@ The config file is essential — it is the cornerstone of the whole setup.
 - **Depth**: how deep to walk.
 
 At the end of the day, this ensures that everything works seamlessly!
+
+Markup and styling are free to differ. What a reader can find on the page is not.

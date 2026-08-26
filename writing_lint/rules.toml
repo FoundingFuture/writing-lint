@@ -56,6 +56,17 @@ context = [
 ]
 
 
+# A sentence that ends on a bare auxiliary and "not" borrows its verb from
+# the sentence before it. The pair reads as a reveal. State the second fact
+# in full, with its own verb and object.
+[[shared.constructs]]
+rule = "elliptical-negation"
+level = "error"
+ignorecase = true
+method = "search"
+message = "sentence ends on a bare negation (X is not). Say what it is, in full."
+pattern = '''\b(is|are|was|were|do|does|did|has|have|had|can|could|will|would|should|must|may|might)\s*(not|n't)[.!?](\s|$)|\bcannot[.!?](\s|$)'''
+
 [shared.limits]
 max_sentence_words = 20
 max_heading_depth = 3
@@ -497,7 +508,7 @@ filler = [
 ]
 
 [docs.caps]
-# A run of shouted words is emphasis. These tags are not.
+# A run of shouted words is emphasis. These tags are markers, and pass.
 allow = [
   "BUG", "FIXME", "HACK", "NOTE", "SAFETY", "TODO", "WARNING", "XXX",
 ]
