@@ -68,7 +68,8 @@ message = "sentence ends on a bare negation (X is not). Say what it is, in full.
 pattern = '''\b(is|are|was|were|do|does|did|has|have|had|can|could|will|would|should|must|may|might)\s*(not|n't)[.!?](\s|$)|\bcannot[.!?](\s|$)'''
 
 [shared.limits]
-max_sentence_words = 20
+warn_sentence_words = 18
+max_sentence_words = 26
 max_heading_depth = 3
 
 
@@ -167,7 +168,8 @@ context = [
 boundary = "hyphen"
 
 [web_content.limits]
-max_sentence_words = 20
+warn_sentence_words = 18
+max_sentence_words = 26
 max_heading_words = 8
 max_heading_depth = 3
 title_case_min = 3
@@ -492,7 +494,8 @@ context = [
 boundary = "word"
 
 [docs.limits]
-max_sentence_words = 20
+warn_sentence_words = 18
+max_sentence_words = 26
 max_heading_depth = 3
 title_case_min = 3
 

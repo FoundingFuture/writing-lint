@@ -34,6 +34,7 @@ CONSTRUCTS = common.compile_constructs(RULES["constructs"])
 LIMITS = RULES["limits"]
 TITLE_CASE_MIN = LIMITS["title_case_min"]
 MAX_SENTENCE_WORDS = LIMITS["max_sentence_words"]
+WARN_SENTENCE_WORDS = LIMITS["warn_sentence_words"]
 MAX_HEADING_WORDS = LIMITS["max_heading_words"]
 MAX_HEADING_DEPTH = LIMITS["max_heading_depth"]
 MAX_PAREN_WORDS = LIMITS["max_paren_words"]
@@ -63,8 +64,18 @@ class Block:
         self.kind, self.line, self.text, self.level = kind, line, text, level
 
 
+# A formula or a path is one thing a reader takes in. It is many matches
+# for the word pattern, some of them command names nobody reads aloud.
+# One token each measures the sentence the way it is read.
+ONE_THING = re.compile(
+    r"\\\(.*?\\\)"      # inline math
+    r"|\$\$.*?\$\$"       # display math
+    r"|`[^`]+`",              # inline code, which covers paths and commands
+    re.S)
+
+
 def words_of(text):
-    return [w for w in re.findall(r"[A-Za-z][\w'-]*", text)]
+    return [w for w in re.findall(r"[A-Za-z][\w'-]*", ONE_THING.sub(" span ", text))]
 
 
 def sentences_of(text):
@@ -137,7 +148,7 @@ def parse_html(source):
 def parse_markdown(lines):
     blocks = []
     bold_runs = 0
-    in_fence = in_front = False
+    in_fence = in_front = in_math = False
     para, para_start = [], 0
     front = []
 
@@ -166,6 +177,14 @@ def parse_markdown(lines):
             in_fence = not in_fence
             continue
         if in_fence:
+            continue
+        # A display formula is not prose, and it is as long as it must be.
+        # No rule here applies inside one.
+        if s == "$$":
+            flush()
+            in_math = not in_math
+            continue
+        if in_math:
             continue
         if s == "<!--more-->" or s.startswith("<!--"):
             flush()
@@ -219,6 +238,9 @@ def strip_code(text):
     text = re.sub(r"\[([^\]]*)\]\((?:[^()]|\([^)]*\))*\)", r"\1", text)  # [text](url) keeps text
     text = re.sub(r"\[([^\]]*)\]\[[^\]]*\]", r"\1", text)      # [text][ref] keeps text
     text = re.sub(r"\{\{[<%].*?[>%]\}\}", " ", text)
+    # A formula is not prose. Its minus signs are not dashes and its
+    # brackets are not asides. Every rule below reads prose, so it goes.
+    text = re.sub(r"\\\(.*?\\\)", " span ", text, flags=re.S)
     return re.sub(r"`[^`]*`", " ", text)
 
 
@@ -267,9 +289,14 @@ def check_text(path, block, findings):
     sents = sentences_of(text)
     for s in sents:
         n = len(words_of(s))
+        # 18 is the length to aim at. 26 is the length to stop at. A
+        # sentence between them is worth a look, and is not a fault.
         if n > MAX_SENTENCE_WORDS:
             findings.append(Finding(path, line, "error", "length",
                                     f"sentence runs {n} words. Split at {MAX_SENTENCE_WORDS}."))
+        elif n > WARN_SENTENCE_WORDS:
+            findings.append(Finding(path, line, "warning", "length",
+                                    f"sentence runs {n} words. Aim at {WARN_SENTENCE_WORDS}."))
     short = [s for s in sents if len(words_of(s)) <= 4]
     run = 0
     for s in sents:

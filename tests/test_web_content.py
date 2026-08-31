@@ -43,10 +43,12 @@ def test_raw_html_page():
 
 def test_verge_page():
     findings = run(web_content, "verge-page.html")
-    assert levels(findings) == (35, 4)
+    # 26 words is the limit and 18 the target, so one sentence that used to
+    # fail now warns instead. The counts move with it.
+    assert levels(findings) == (34, 6)
     assert tally(findings) == {
         "announced-count": 1, "bold": 1, "context": 1, "contrast": 3,
-        "heading": 4, "length": 1, "phrase": 10, "question-reveal": 1,
+        "heading": 4, "length": 2, "phrase": 10, "question-reveal": 1,
         "reader": 1, "staccato": 1, "word": 15,
     }
 

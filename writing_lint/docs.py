@@ -155,6 +155,9 @@ def check_sentence_length(path, start_line, block, findings):
         re.sub(r"^\s*([-*+]|\d+\.|>)\s*", "", strip_inline_code(line))
         for line in block
     )
+    # A formula is one thing a reader takes in. Inline code is already
+    # stripped above, so only math is left.
+    prose = re.sub(r"\\\(.*?\\\)|\$\$.*?\$\$", " span ", prose)
     for sentence in re.split(r"(?<=[.?])\s+", prose):
         words = [w for w in sentence.split() if re.search(r"[A-Za-z]", w)]
         if len(words) > MAX_SENTENCE_WORDS:
